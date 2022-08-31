@@ -18,7 +18,7 @@ function exercicio01()
   
   counter = 1;
   for getValues = x
-    y(counter) = functionGetRoot(getValues);
+    y(counter) = getRoot(getValues);
     counter++;
   endfor
   
@@ -26,9 +26,9 @@ function exercicio01()
   
   for iterations = 1:maxIterations
     # Fórmula que calcula a posição da raiz
-    xr = xu - ((functionGetRoot(xu)*(xl-xu))/(functionGetRoot(xl)-functionGetRoot(xu)));
+    xr = xu - ((getRoot(xu)*(xl-xu))/(getRoot(xl)-getRoot(xu)));
     
-    if functionGetRoot(xl)*functionGetRoot(xr) > 0
+    if getRoot(xl)*getRoot(xr) > 0
       xl = xr; # Raíz na primeira metade do intervalo 
     else
       xu = xr; # Raíz na segunda metade do intervalo
@@ -43,17 +43,17 @@ function exercicio01()
     xr0 = xr;
     
     vetx(iterations) = xr0;
-    vety(iterations) = functionGetRoot(xr0);
+    vety(iterations) = getRoot(xr0);
   end
   
-  printf("F(%.6f) = %.6f, sendo necessario %d iteracoes\n", xr, functionGetRoot(xr), iterations);
+  printf("F(%.6f) = %.6f, sendo necessario %d iteracoes\n", xr, getRoot(xr), iterations);
   vetx = vetx(1:iterations);
   vety = vety(1:iterations);
   
   plotConvergence(vetx, vety, iterations);
 end
 
-function y = functionGetRoot(x)
+function y = getRoot(x)
   y = (x.^3)+(2.*(x.^2))-2;
 end
 
@@ -64,14 +64,14 @@ function plotGraph(x, y, i, xr)
     hold('on');
     
     p1 = plot(x, y, 'linewidth', 2, 'og');
-    p2 = plot(xr, functionGetRoot(xr), 'linewidth', 2, 'oxr', 'markersize', 15);
+    p2 = plot(xr, getRoot(xr), 'linewidth', 2, 'oxr', 'markersize', 15);
     
     hold('off');
     
     # Informações do Gráfico
     
     set(gca, 'fontsize', 15);
-    title(sprintf('F(%.6f) = %.6f, Iteracoes: %d', xr, functionGetRoot(xr), i));
+    title(sprintf('F(%.6f) = %.6f, Iteracoes: %d', xr, getRoot(xr), i));
     xlabel('x');
     ylabel('F(x)');
     legend([p1, p2], {'Funcao', 'Raiz calculada'}, 'location', 'northeast');
