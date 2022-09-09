@@ -1,7 +1,7 @@
 # Daniel Vitor
-# exercicio - 09
+# exercicio - 02
 
-function exercicio01()
+function lista01()
   # convenção de variaveis seguindo o apresentado em aula/slides.
   xu = 1; # interval1
   xl = 0; # interval2
